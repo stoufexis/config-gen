@@ -1,8 +1,8 @@
-A tool that generates configuration from a template
+A tool that generates configuration from a template.
 
 * A template is any file with the first line being a declaration of placeholders to be used in the rest of the file.
 * The decleration starts with an exclamation mark followed by a comma seperated list of placeholders.
-* To preserve linting on template files using a formal configuration language, the decleration can be placed in a comment.
+* To preserve linting on template files, the decleration can be placed in a comment.
 
 For example, template.ldif could look like this.
 ```ldif
@@ -18,7 +18,7 @@ cn: ?uid
 mail: ?uid@?dom.?tld
 ```
 
-Now, the following command:
+Now, the following command (using docker):
 ```
 docker run --rm -it \
   -v $PWD:/opt/templates/ \
@@ -38,3 +38,5 @@ sn: surname
 cn: useruid
 mail: useruid@example.com
 ```
+
+The docker image can be found at https://hub.docker.com/repository/docker/stefanostouf/config-gen
