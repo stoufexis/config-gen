@@ -1,4 +1,3 @@
-
 module Pattern : sig
   open Base
 
@@ -35,19 +34,19 @@ let replace_all ~patterns ~with_ template_str =
     | Unequal_lengths ->
         failwith "Patterns and arguments of different lengths"
 
-let read_lines_file = Core.In_channel.read_lines ~fix_win_eol:true
+let read_lines_from_file = Core.In_channel.read_lines ~fix_win_eol:true
 
 let get_and_replace_with ~template_file args =
   let open String in
-  match read_lines_file ("templates/" ^ template_file) with
-  | decleration :: template ->
+  match read_lines_from_file ("templates/" ^ template_file) with
+  | decleration :: template_lines ->
       let search_patterns =
         List.map ~f:Pattern.to_search_pattern
           (Pattern.from_patterns_decleration decleration)
+
       in
-        String.concat ~sep:"\n" template
+        String.concat ~sep:"\n" template_lines
         |> replace_all ~patterns:search_patterns ~with_:args
-        |> Stdlib.print_endline
   | [] ->
       failwith "Empty template"
 
@@ -57,7 +56,7 @@ let () =
   let open Array in
   match get_args () with
   | _ :: template_file :: args ->
-      get_and_replace_with ~template_file args
+      get_and_replace_with ~template_file args |> Stdlib.print_endline
   | [_] ->
       failwith "Not enough arguments"
   | [] ->
