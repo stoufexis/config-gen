@@ -23,7 +23,7 @@ let () =
   let open String in
   match Array.to_list @@ Sys.get_argv () with
   | _ :: template_file :: args -> (
-    match read_lines_file template_file with
+    match read_lines_file @@ "templates/" ^ template_file with
     | patterns :: template ->
         let search_patterns =
           List.map ~f:Search_pattern.create @@ split_patterns_line patterns
