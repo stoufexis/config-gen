@@ -23,7 +23,7 @@ Now, the following command:
 docker run --rm -it \
   -v $PWD:/opt/templates/ \
   stefanostouf/ldap-new-user \
-  template2.ldif useruid name surname example com
+  template.ldif useruid name surname example com
 ```
 
 will print:
