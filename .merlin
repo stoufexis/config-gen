@@ -1,2 +1,3 @@
 PKG base
 PKG ppx_jane
+PKG core
