@@ -19,7 +19,7 @@ mail: ?uid@?dom.?tld
 ```
 
 Now, the following command (using docker):
-```
+```ldif
 docker run --rm -it \
   -v $PWD:/opt/templates/ \
   stefanostouf/ldap-new-user \
@@ -27,7 +27,7 @@ docker run --rm -it \
 ```
 
 will create output.ldif
-```
+```ldif
 dn: uid=useruid,ou=users,dc=example,dc=com
 objectclass: top
 objectclass: person
@@ -40,12 +40,42 @@ mail: useruid@example.com
 ```
 
 You can provide more than one arguments seperated with a space. The following
-```
+```ldif
 docker run --rm -it -v $PWD:/opt/templates/ stefanostouf/config-gen \
   temp.ldif:useruid,name,surname,example,com:output.ldif \
   temp.ldif:useruid2,name2,surname2,example,com:output2.ldif \
   ...
 ```
 
+will create:
+
+```ldif
+# output.ldif
+
+dn: uid=useruid,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+uid: useruid
+givenName: name
+sn: surname
+cn: useruid
+mail: useruid@example.com
+
+# output2.ldif
+
+dn: uid=useruid2,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+uid: useruid2
+givenName: name2
+sn: surname2
+cn: useruid2
+mail: useruid2@example.com
+
+....
+
+```
 
 The docker image can be found at https://hub.docker.com/repository/docker/stefanostouf/config-gen
