@@ -6,14 +6,14 @@ USER root
 
 RUN opam install ocamlfind base core \
     && eval `opam env` \
-    && ocamlfind ocamlopt -o /opt/new_user -thread -linkpkg -package base,core main.ml
+    && ./build.sh /opt/
 
 FROM frolvlad/alpine-glibc:glibc-2.34
 
-COPY --from=builder /opt/new_user /opt/new_user
+COPY --from=builder /opt/program /opt/program
 
 RUN mkdir /opt/templates/
 
 WORKDIR /opt
 
-ENTRYPOINT ["/opt/new_user"]
+ENTRYPOINT ["/opt/program"]

@@ -1,3 +1,7 @@
 PKG base
 PKG ppx_jane
 PKG core
+
+B build
+
+S src

@@ -3,3 +3,4 @@ main.cmx
 main.o
 *.ldif
 build/
+.build/
