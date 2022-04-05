@@ -23,10 +23,10 @@ Now, the following command (using docker):
 docker run --rm -it \
   -v $PWD:/opt/templates/ \
   stefanostouf/ldap-new-user \
-  template.ldif useruid name surname example com
+  template.ldif:useruid,name,surname,example,com:output.ldif
 ```
 
-will print:
+will create output.ldif
 ```
 dn: uid=useruid,ou=users,dc=example,dc=com
 objectclass: top
@@ -38,5 +38,14 @@ sn: surname
 cn: useruid
 mail: useruid@example.com
 ```
+
+You can provide more than one arguments seperated with a space. The following
+```
+docker run --rm -it -v $PWD:/opt/templates/ stefanostouf/config-gen \
+  temp.ldif:useruid,name,surname,example,com:output.ldif \
+  temp.ldif:useruid2,name2,surname2,example,com:output2.ldif \
+  ...
+```
+
 
 The docker image can be found at https://hub.docker.com/repository/docker/stefanostouf/config-gen
