@@ -1,7 +1,7 @@
 (executable
  (public_name config_gen)
  (name main)
- (libraries config_gen base))
+ (libraries mylib base))
 
 (env
   (dev

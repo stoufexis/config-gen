@@ -1,5 +1,5 @@
 (library
- (name config_gen)
+ (name mylib)
  (libraries base core))
 
 (env
