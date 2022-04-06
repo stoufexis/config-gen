@@ -78,4 +78,15 @@ mail: useruid2@example.com
 
 ```
 
+If you intend to use the same template for sequential arguments, the template can be omitted until you need to specify a different one. E.g.
+```ldif
+docker run --rm -it -v $PWD:/opt/templates/ stefanostouf/config-gen \
+  temp.ldif:useruid,name,surname,example,com:output.ldif \
+  :useruid2,name2,surname2,example,com:output2.ldif \
+  :useruid3,name3,surname3,example,com:output3.ldif \
+  template2.ldif:useruid,name,surname,example,com:output4.ldif \
+  ...
+```
+
+
 The docker image can be found at https://hub.docker.com/repository/docker/stefanostouf/config-gen
